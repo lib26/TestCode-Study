@@ -27,7 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	// test
+	// test -> JUnit5 + AssertJ 포함되어있음
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// lombok
