@@ -1,0 +1,16 @@
+
+spring:
+  datasource:
+    url: jdbc:myslq://localhost:8080/cafekiosk
+    username: root
+    password: 1234
+
+  jpa: # jpa?? ??
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug
