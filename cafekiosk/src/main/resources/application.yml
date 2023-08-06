@@ -7,6 +7,8 @@ spring:
     username: root
     password: 1234
 
+  # default를 따라가서 아래 ddl-auto는 무시된다.
+  # 다만 profile을 실수로 적지 않았을 경우에 사고를 예방하기 위해 none을 명시해줄 필요가 있다.
   jpa:
     hibernate:
       ddl-auto: none
@@ -28,6 +30,9 @@ spring:
     # (2.5~) Hibernate 초기화 이후에 data.sql를 실행시켜달라는 의미. default는 false
     # 하이버네이트가 초기화 되면서 ddl 테이블 정보 있어야 sql.data를 넣을 수 있는 insert 쿼리를 날릴 수 있다.
 
+  sql:
+    init:
+      mode: always
 ---
 spring:
   config:
