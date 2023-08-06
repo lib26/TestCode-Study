@@ -1,16 +1,48 @@
-
 spring:
+  profiles:
+    default: local
+
   datasource:
     url: jdbc:mysql://localhost:3306/cafekiosk
     username: root
     password: 1234
 
-  jpa: # jpa?? ??
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  jpa:
     hibernate:
       ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+    # (2.5~) Hibernate 초기화 이후에 data.sql를 실행시켜달라는 의미. default는 false
+    # 하이버네이트가 초기화 되면서 ddl 테이블 정보 있어야 sql.data를 넣을 수 있는 insert 쿼리를 날릴 수 있다.
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
 
-logging.level:
-  org.hibernate.SQL: debug
+  # 테스트를 돌릴 때는 data.sql를 통해 초기화 하지 않겠다는 의미
+  sql:
+    init:
+      mode: never
