@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:myslq://localhost:8080/cafekiosk
+    url: jdbc:mysql://localhost:3306/cafekiosk
     username: root
     password: 1234
 
