@@ -54,11 +54,12 @@ public class OrderService {
     }
 
     private void deductStockQuantities(List<Product> products) {
-        List<String> stockProductNumbers = extractStockProductNumbers(products);
+        List<String> stockProductNumbers = extractStockProductNumbers(products); // 1 1 2
 
-        Map<String, Stock> stockMap = createStockMapBy(stockProductNumbers);
-        Map<String, Long> productCountingMap = createCountingMapBy(stockProductNumbers);
+        Map<String, Stock> stockMap = createStockMapBy(stockProductNumbers); // 1 2에 대한 stock이 담기고
+        Map<String, Long> productCountingMap = createCountingMapBy(stockProductNumbers); // 1 2개, 2가 하나
 
+        // HashSet으로 중복 제거
         for (String stockProductNumber : new HashSet<>(stockProductNumbers)) {
             Stock stock = stockMap.get(stockProductNumber);
             int quantity = productCountingMap.get(stockProductNumber).intValue();
@@ -83,6 +84,7 @@ public class OrderService {
                 .collect(Collectors.toMap(Stock::getProductNumber, s -> s));
     }
 
+    // 상품 번호(p)별로 그룹화하고, 각 상품 번호의 개수를 세어 Long 값으로 반환합니다.
     private static Map<String, Long> createCountingMapBy(List<String> stockProductNumbers) {
         return stockProductNumbers.stream()
                 .collect(Collectors.groupingBy(p -> p, Collectors.counting()));
