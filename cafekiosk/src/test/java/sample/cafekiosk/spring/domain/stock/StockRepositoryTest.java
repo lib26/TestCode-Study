@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.tuple;
 
 // https://velog.io/@sw_smj/JUnit-Repository-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%A4%91-IllegalStateException-%EC%98%A4%EB%A5%98-%EB%B0%9C%EC%83%9D
 @DataJpaTest // 자동 롤백한다.
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 실제 db 사용
 class StockRepositoryTest {
 
     @Autowired

@@ -20,7 +20,7 @@ import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 @ActiveProfiles("test")
 //@SpringBootTest
 @DataJpaTest // 자동 롤백한다
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 실제 db 사용
 class ProductRepositoryTest {
 
     @Autowired

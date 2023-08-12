@@ -16,6 +16,9 @@ public class ProductController {
 
     private final ProductService productService;
 
+    /**
+     * 상품 등록. 어드민 권한
+     */
     @PostMapping("/api/v1/products/new")
     public void createProduct(ProductCreateRequest request) {
         productService.createProduct(request);
