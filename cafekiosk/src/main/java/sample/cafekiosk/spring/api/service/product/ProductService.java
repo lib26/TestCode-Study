@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
  * 1. CRUD 에서 CUD 동작 X / only Read
  * 2. JPA : CUD 스샷 저장, 변경감지 X (성능 항상)
  *
- * 3. CORS(중요) - Command(쓰기) / Query(읽기) 책임을 분리할 수 있음(중요)
+ * 3. CQRS(중요) - Command(쓰기) / Query(읽기) 책임을 분리할 수 있음(중요)
  * 도메인에 따라 다르겠지만 보통 Read 작업이 많음.
- * 따라서 service를 Command와 Read로 분리 할 수 있다. Service와 Provider ㅇㅇ
+ * 따라서 service를 Command와 Query로 분리 할 수 있다. Service와 Provider ㅇㅇ
  * 보통 db를 마스터(write 전용) db 슬레이브(read 전용) 클러스터로 사용한다.
  * readonly true false 값을 보고 db 엔드포인트를 구분할 수 있다.
  * 결국 이렇게 db를 나눠서 추후 읽기로 인한 장애가 났을 때 쓰기작업에 대한 장애를 방지할 수 있다
@@ -30,14 +30,6 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
-
-    public List<ProductResponse> getSellingProducts() {
-        List<Product> products = productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay());
-
-        return products.stream()
-                .map(ProductResponse::of)
-                .collect(Collectors.toList());
-    }
 
     /**
      * 동시성 이슈가 발생할 수 있음. 여러 관리자가 동시에 등록할 때는 어떡할 것인지.
@@ -64,6 +56,17 @@ public class ProductService {
         int nextProductNumberInt = latestProductNumberInt + 1;
 
         return String.format("%03d", nextProductNumberInt);
+    }
+
+    /**
+     * 판매중인 상품 조회
+     */
+    public List<ProductResponse> getSellingProducts() {
+        List<Product> products = productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay());
+
+        return products.stream()
+                .map(ProductResponse::of)
+                .collect(Collectors.toList());
     }
 
 }
