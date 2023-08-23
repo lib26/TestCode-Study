@@ -18,6 +18,9 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    /**
+     * 주문 생성
+     */
     @PostMapping("/api/v1/orders/new")
     public ApiResponse<OrderResponse> createOrder(@Valid @RequestBody OrderCreateRequest request) {
         LocalDateTime registeredDateTime = LocalDateTime.now();
