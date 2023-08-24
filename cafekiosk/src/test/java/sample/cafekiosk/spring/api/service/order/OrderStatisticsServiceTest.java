@@ -50,7 +50,7 @@ class OrderStatisticsServiceTest {
 
     @AfterEach
     void tearDown() {
-        orderProductRepository.deleteAllInBatch();
+        orderProductRepository.deleteAllInBatch(); // 지우는 순서 중요. 외래키때문인듯
         orderRepository.deleteAllInBatch();
         productRepository.deleteAllInBatch();
         mailSendHistoryRepository.deleteAllInBatch();

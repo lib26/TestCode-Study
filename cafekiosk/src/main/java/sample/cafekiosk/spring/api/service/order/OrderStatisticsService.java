@@ -17,6 +17,9 @@ public class OrderStatisticsService {
     private final OrderRepository orderRepository;
     private final MailService mailService;
 
+    /**
+     * 이메일 전송같은 외부 네트워크 작업은 경우 굳이 트랜젝션을 붙여서 커넥션 자원을 갖고 있을 필요가 없다.
+     */
     public boolean sendOrderStatisticsMail(LocalDate orderDate, String email) {
         // 해당 일자에 결제완료된 주문들을 가져와서
         List<Order> orders = orderRepository.findOrdersBy(

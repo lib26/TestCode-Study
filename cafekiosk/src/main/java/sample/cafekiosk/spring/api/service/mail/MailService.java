@@ -23,6 +23,12 @@ public class MailService {
                     .content(content)
                     .build()
             );
+
+            // 스파이 객체 검증을 위한 메서드
+            mailSendClient.a();
+            mailSendClient.b();
+            mailSendClient.c();
+
             return true;
         }
 
