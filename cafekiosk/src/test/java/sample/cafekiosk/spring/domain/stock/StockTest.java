@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
+import org.springframework.util.MultiValueMap;
 
 import java.util.Collection;
 import java.util.List;
@@ -57,7 +58,7 @@ class StockTest {
     @DisplayName("재고 차감 시나리오")
     @TestFactory
     Collection<DynamicTest> stockDeductionDynamicTest() {
-
+        
         // given
         // 공유 데이터
         Stock stock = Stock.create("001", 1);
