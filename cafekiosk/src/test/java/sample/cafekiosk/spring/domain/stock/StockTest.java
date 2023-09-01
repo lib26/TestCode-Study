@@ -8,7 +8,8 @@ import org.junit.jupiter.api.TestFactory;
 import java.util.Collection;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StockTest {
 
@@ -57,7 +58,8 @@ class StockTest {
     @TestFactory
     Collection<DynamicTest> stockDeductionDynamicTest() {
 
-        // given 공유 데이터
+        // given
+        // 공유 데이터
         Stock stock = Stock.create("001", 1);
 
         return List.of(
